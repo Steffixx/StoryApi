@@ -19,20 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.accenture.model.Employee;
-import com.accenture.model.Story;
 import com.accenture.service.EmployeeService;
-import com.accenture.service.StoryService;
 
 @CrossOrigin(origins = "*")
 @RestController
 public class StoryController {
 
 	@Autowired
-	StoryService storyService;
+	EmployeeService StoryService;
 
 	@GetMapping("/story")
 	public Collection<Story> getStorys() {
 		return storyService.getStorys();
+
 	}
 
 	@GetMapping("/story/{username}")
@@ -40,11 +39,33 @@ public class StoryController {
 		return ResponseEntity.ok(storyService.getStory(username));
 	}
 
+	//title
+//	@GetMapping("/employee/name/{name}")
+//	public Employee getEmployeeByName(@PathVariable String name) {
+//		return employeeService.getEmployeeByName(name);
+//	}
+
 	@PostMapping("/story")
 	public ResponseEntity<?> addStory(@Valid @RequestBody Story story) {
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}")
 				.buildAndExpand(story.getUsername()).toUri();
-		storyService.addStory(story);
+		storyService.addEmployee(story);
 		return ResponseEntity.created(location).body("Story Created!");
 	}
+
+//	@PutMapping("/storu/{username}")
+//	public ResponseEntity<?> updateStory(@PathVariable String username,@Valid @RequestBody Story story) {
+//		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}")
+//				.buildAndExpand(story.getUsername()).toUri();
+//		storyService.updateStory(username,story);
+//		return ResponseEntity.created(location).body("Story Created!");
+//
+//	}
+
+//	@DeleteMapping("/story/{username}")
+//	public ResponseEntity<?> deleteEmployee(@PathVariable String username) {
+//		storyService.removeStory(username);
+//		return ResponseEntity.noContent().build();
+//	}
+
 }

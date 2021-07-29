@@ -1,6 +1,9 @@
 package com.accenture.model;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class Story {
 	public Story() {
@@ -51,7 +54,7 @@ public class Story {
 
 	@Override
 	public String toString() {
-		return "Story [username=" + username + ", title=" + title + ", body=" + body + "]";
+		return "Story [username: " + username + ", title: " + title + ", body: " + body + "]";
 	}
 
 }
